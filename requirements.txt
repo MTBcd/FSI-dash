@@ -56,7 +56,6 @@ googleapis-common-protos==1.62.0
 h11==0.14.0
 hmmlearn==0.3.3
 html5lib==1.1
-htmlmin==0.1.12
 httplib2==0.22.0
 huggingface-hub==0.22.0
 ib-insync==0.9.86
