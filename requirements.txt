@@ -158,7 +158,7 @@ sniffio==1.3.1
 sortedcontainers==2.4.0
 soupsieve==2.5
 sql==2022.4.0
-src @ file:///C:/Users/LENOVO/Documents/mes_projets/bigdata_airtraffic
+src @
 stack-data==0.6.2
 statsmodels==0.13.5
 streamlit==1.31.0
