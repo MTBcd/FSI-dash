@@ -76,7 +76,6 @@ jupyter_client==8.0.3
 jupyter_core==5.2.0
 jupyterlab-widgets==3.0.5
 kiwisolver==1.4.4
-llvmlite==0.42.0
 lxml==4.9.3
 markdown-it-py==3.0.0
 MarkupSafe==2.1.2
@@ -88,7 +87,6 @@ multitasking==0.0.11
 nest-asyncio==1.5.6
 networkx==3.0
 nltk==3.8.1
-numba==0.59.1
 numexpr==2.9.0
 numpy==1.26.4
 oauthlib==3.2.2
