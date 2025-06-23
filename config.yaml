@@ -1,0 +1,29 @@
+# config.yaml
+
+
+api_credentials:
+  fred_api_key: "48947fcc5986451303203ac6738101f9"
+  ibkr_port: 7497
+  ibkr_client_id: 1013
+  chart_studio:
+    username: "Tuler"
+    api_key: "EOdkt6iCFZgZvJtTdFc6"
+
+paths:
+  base_data_path: "C:/Users/LENOVO/Desktop/AquaeCapital/Update_April_2025"
+  output_data_path: "C:/Users/LENOVO/Desktop/AquaeCapital/Update_April_2025/Full_set_variables.csv"
+  pnl_data_path: "Rick_PnL_brut.xlsx"
+  reports_path: "fsi_combined_report.html"
+
+dates:
+  start_date: "2017-01-01"
+
+processing_params:
+  windows: [250]
+  fsi_window_size: 125
+  fsi_n_iter: 300
+  stability_threshold: 0.75
+
+plotting:
+  gamma: 2.5
+  c_param: 0.5
