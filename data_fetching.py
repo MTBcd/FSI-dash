@@ -249,3 +249,81 @@ def scrape_investing_data(url, name, save_path, wait=60):
 
 
 
+# # data_fetching.py
+# import pandas as pd
+# import requests
+# from fredapi import Fred
+# import logging
+
+# FMP_API_KEY = "4wZfuuGGtdE51b53L0TyemgTeZ0xm6Jg"
+
+# # Fetch from FMP API
+# def fetch_fmp_data(ticker, api_key=FMP_API_KEY):
+#     url = f"https://financialmodelingprep.com/api/v3/historical-price-full/{ticker}?apikey={api_key}"
+#     response = requests.get(url)
+#     data = response.json()
+#     if 'historical' in data:
+#         df = pd.DataFrame(data['historical'])
+#         df['date'] = pd.to_datetime(df['date'])
+#         df.set_index('date', inplace=True)
+#         return df['close']
+#     else:
+#         logging.error(f"No data for {ticker}")
+#         return pd.Series()
+
+# # Fetch from FRED API
+# def fetch_fred_data(series_id, fred_api_key):
+#     fred = Fred(api_key=fred_api_key)
+#     series = fred.get_series(series_id)
+#     series.index = pd.to_datetime(series.index)
+#     return series
+
+# # Fetch all series
+# def get_all_series(config):
+#     fred_api_key = config['data']['fred_api_key']
+#     start_date = pd.to_datetime(config['data']['start_date'])
+
+#     data = {}
+
+#     # --- Volatility Metrics ---
+#     data['VIX'] = fetch_fmp_data('^VIX')
+#     data['MOVE Index'] = fetch_fmp_data('^MOVE')
+
+#     # --- Safe-Haven Assets & Prices ---
+#     data['USD Index (DXY)'] = fetch_fmp_data('DX-Y.NYB')
+#     data['Gold Price'] = fetch_fmp_data('GC=F')
+#     data['US 10Y Treasury Yield'] = fetch_fred_data('GS10', fred_api_key)
+
+#     # --- Funding & Liquidity ---
+#     data['USD Overnight Rate'] = fetch_fred_data('EFFR', fred_api_key)
+#     data['FRED RRP Volume'] = fetch_fred_data('RRPONTSYD', fred_api_key)
+#     data['3M T-Bill Yield'] = fetch_fred_data('DTB3', fred_api_key)
+#     data['3M LIBOR (USD)'] = fetch_fred_data('USD3MTD156N', fred_api_key)
+#     data['TED Spread'] = data['3M LIBOR (USD)'] - data['3M T-Bill Yield']
+
+#     # --- Valuation Indicator ---
+#     data['S&P 500 Price'] = fetch_fmp_data('^SPX')
+#     sp500_earnings = fetch_fred_data('SPEARN', fred_api_key)
+#     data['S&P 500 Earnings'] = sp500_earnings
+#     data['S&P 500 P/E Ratio'] = data['S&P 500 Price'] / sp500_earnings
+
+#     # --- Credit & OAS ---
+#     data['US IG OAS'] = fetch_fred_data('BAMLC0A0CM', fred_api_key)
+#     data['US HY OAS'] = fetch_fred_data('BAMLH0A0HYM2', fred_api_key)
+
+#     # --- Yield Curve Structure ---
+#     data['1Y Treasury Yield'] = fetch_fred_data('GS1', fred_api_key)
+#     data['2Y Treasury Yield'] = fetch_fred_data('GS2', fred_api_key)
+#     data['10Y-2Y Slope'] = data['US 10Y Treasury Yield'] - data['2Y Treasury Yield']
+#     data['10Y-3M Slope'] = data['US 10Y Treasury Yield'] - data['3M T-Bill Yield']
+
+#     # Convert dictionary to DataFrame
+#     df_final = pd.concat(data, axis=1)
+
+#     # Filter based on start_date
+#     df_final = df_final[df_final.index >= start_date].sort_index()
+
+#     return df_final
+
+
+
